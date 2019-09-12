@@ -18,5 +18,13 @@ class UsersTableSeeder extends Seeder
           'person_id' => 1,
           'users_type_id' => 1,
       ]);
+
+      DB::table('users')->insert([
+          'user_name' => 'Karolpatriciamartinez',
+          'email' => 'karol.martinez.rubio@gmail.com',
+          'password' => bcrypt('@endedor'),
+          'person_id' => 2,
+          'users_type_id' => 2,
+      ]);
     }
 }

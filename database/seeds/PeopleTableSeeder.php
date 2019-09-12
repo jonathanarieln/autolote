@@ -18,5 +18,14 @@ class PeopleTableSeeder extends Seeder
           'gender_id' => 1,
           'identification_number' => '0801-1996-10627',
       ]);
+
+      DB::table('people')->insert([
+          'first_name' => 'Karol Patricia',
+          'surname' => 'Martinez Rubio',
+          'birthdate' => date('Y-m-d', strtotime('1996-10-22')),
+          'gender_id' => 2,
+          'identification_number' => '0708-1997-00155',
+      ]);
+
     }
 }
