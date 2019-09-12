@@ -20,7 +20,7 @@ class CreatePeopleTable extends Migration
             $table->dateTime('birthdate');
             $table->bigInteger('gender_id')->unsigned();
             $table->foreign('gender_id')->references('id')->on('genders');
-            $table->string('identification_number');
+            $table->string('identification_number')->unique();
             $table->timestamps();
         });
     }
