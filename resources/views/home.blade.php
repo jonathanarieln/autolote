@@ -14,7 +14,16 @@
                         </div>
                     @endif
 
-                    Bienvenido!
+                    <p>Bienvenido {{Auth::user()->person->first_name}} {{Auth::user()->person->surname}}!!!!!</p>
+
+                    @if(@Auth::user()->hasPermissionTo('admin'))
+                        <p class="btn text-white">Usted tiene permisos de admin y tambien </p>
+                    @endif
+
+                    @if(@Auth::user()->hasPermissionTo('vendedor'))
+                        <p class="btn text-white">Usted tiene permisos de vendedor</p>
+                    @endif
+
                 </div>
             </div>
         </div>

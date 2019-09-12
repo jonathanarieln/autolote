@@ -25,4 +25,14 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function admin()
+    {
+        return 'Tiene permisos de administrador';
+    }
+
+    public function vendedor()
+    {
+        return 'Tiene permisos de vendedor o de administrador';
+    }
 }

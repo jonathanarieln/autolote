@@ -17,7 +17,6 @@ class UsersTableSeeder extends Seeder
           'email' => 'jonathan.ariel.nunez@gmail.com',
           'password' => bcrypt('@dministrador'),
           'person_id' => 1,
-          'users_type_id' => 1,
           'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
           'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
       ]);
@@ -27,7 +26,6 @@ class UsersTableSeeder extends Seeder
           'email' => 'karol.martinez.rubio@gmail.com',
           'password' => bcrypt('@endedor'),
           'person_id' => 2,
-          'users_type_id' => 2,
           'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
           'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
       ]);
