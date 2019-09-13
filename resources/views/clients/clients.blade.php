@@ -9,9 +9,6 @@
 
                 <div class="card-body">
 
-                  <div class="col m-8">
-
-
                     <table class = "table table-hover table-dark table-responsive">
                         <thead>
                         <tr>
@@ -31,7 +28,7 @@
                                     <td>Juridico</td>
                                     <td>{{$client->legal->contact_phone_number}}</td>
                                 @else
-                                    <td>{{$client->person->first_name}}</td>
+                                    <td>{{$client->person->first_name." ".$client->person->surname}}</td>
                                     <td>Natural</td>
                                     <td>{{$client->person->phone_number}}</td>
                                 @endif
@@ -41,13 +38,8 @@
                         </tbody>
                     </table>
 
-                  </div>
-
-                  <div class="col m-4">
-
                     <a class="btn btn-dark btn-lg" href="clients/create" role="button">Nuevo Cliente</a>
 
-                  </div>
 
 
                 </div>

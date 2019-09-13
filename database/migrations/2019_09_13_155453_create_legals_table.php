@@ -16,8 +16,8 @@ class CreateLegalsTable extends Migration
         Schema::create('legals', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('legal_name',50);
-            $table->string('contact_phone_number',50);
             $table->string('contact_name',50);
+            $table->string('contact_phone_number',50);
             $table->string('RTN',20);
             $table->timestamps();
         });
