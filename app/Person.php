@@ -11,6 +11,11 @@ class Person extends Model
        return $this->hasMany(User::class);
      }
 
+     public function clients()
+     {
+       return $this->hasMany(Client::class);
+     }
+
      public function gender()
      {
         return $this->belongsTo(Gender::class);

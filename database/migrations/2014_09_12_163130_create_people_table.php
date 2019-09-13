@@ -18,6 +18,7 @@ class CreatePeopleTable extends Migration
             $table->string('first_name',50);
             $table->string('surname',50);
             $table->dateTime('birthdate');
+            $table->string('phone_number',40);
             $table->bigInteger('gender_id')->unsigned();
             $table->foreign('gender_id')->references('id')->on('genders');
             $table->string('identification_number')->unique();

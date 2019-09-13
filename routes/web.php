@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+//Rutas para las pruebas de los roles
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/admin', 'HomeController@admin')->name('admin')
