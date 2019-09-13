@@ -26,6 +26,8 @@ class HomeController extends Controller
         return view('home');
     }
 
+
+//solo es para probar el funcionamiento de los roles
     public function admin()
     {
         return 'Tiene permisos de administrador';

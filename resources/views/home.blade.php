@@ -23,7 +23,6 @@
                     @if(@Auth::user()->hasPermissionTo('vendedor'))
                         <p class="btn text-white">Usted tiene permisos de vendedor</p>
                     @endif
-
                 </div>
             </div>
         </div>

@@ -11,13 +11,17 @@
 |
 */
 
+//Ruta Al WELCOME
 Route::get('/', function () {
     return view('welcome');
 });
 
+//RUTAS AUTH
 Auth::routes();
 
+// RUTA PARA EL HOME
 Route::get('/home', 'HomeController@index')->name('home');
+
 
 
 //Rutas para las pruebas de los roles
@@ -28,3 +32,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/vendedor', 'HomeController@vendedor')->name('vendedor')
                                                         ->middleware('permission:vendedor');
 });
+
+//RUTAS CLIENTES
+  Route::resource('clients', 'ClientController');

@@ -9,18 +9,20 @@
 
                 <div class="card-body">
 
-                  <table class = "table table-hover table-responsive">
+                  <table class = "table table-hover table-dark table-responsive">
                       <thead>
-                      <tr>
-                          <th>Id</th>
-                      </tr>
+                          <th>JSON cliente</th>
+                          <th>JSON contacto</th>
                       </thead>
                       <tbody>
-                      @foreach ($Clients as $Client)
-                          <tr>
-                              <td>{{$Client->Id}}</td>
-                          </tr>
-                      @endforeach
+                        <th>
+                             {{$client}}
+                        </th>
+                        @if ($client->is_legal)
+                            <th>{{$client->legal}}</td>
+                        @else
+                            <td>{{$client->person}}</td>
+                        @endif
                       </tbody>
                   </table>
 
