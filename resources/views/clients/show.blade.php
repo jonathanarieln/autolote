@@ -26,6 +26,10 @@
                       </tbody>
                   </table>
 
+                  <button class="btn btn-dark">
+                      <a class="button-link" href="/clients">{{ __('Ver Clientes') }}</a>
+                  </button>
+
                 </div>
             </div>
         </div>

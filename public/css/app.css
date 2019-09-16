@@ -377,6 +377,41 @@ template {
   display: none !important;
 }
 
+/*MIS MODIFICACIONES*/
+
+/* Damos forma  a los circulos: */
+.step {
+  height: 15px ;
+  width: 15px ;
+  margin: 0 2px ;
+  background-color: #bbbbbb ;
+  border: none ;
+  border-radius: 50% ;
+  display: inline-block ;
+  opacity: 0.5 ;
+}
+
+/* Marcamos los iconos activos: */
+.step.active {
+  opacity: 1 !important;
+}
+
+/* Colocamos todo como finalizado: */
+.step.finish {
+  background-color: #4CAF50 !important;
+}
+
+/* Ocultamos las tabs por defecto y solo mostramos la tab 1: */
+#tab2,
+#tab3,
+#tab4 {
+  display: none;
+}
+
+/*ACA TERMINAN MIS MODIFICACIONES*/
+
+
+
 h1,
 h2,
 h3,
@@ -402,6 +437,7 @@ h1,
 h2,
 .h2 {
   font-size: 1.8rem;
+  color: #AAAAAA;
 }
 
 h3,

@@ -20,6 +20,7 @@ class CreateClientsTable extends Migration
             $table->foreign('person_id')->references('id')->on('people');
             $table->bigInteger('legal_id')->unsigned()->nullable();
             $table->foreign('legal_id')->references('id')->on('legals');
+            $table->string('RTN',20);
             $table->timestamps();
         });
     }
