@@ -114,9 +114,9 @@
                                 <label for="gender_id" class="col-md-4 col-form-label text-md-right">{{ __('gender_id') }}</label>
 
                                 <div class="col-md-6">
-                                  <input type="radio" name="gender_id" value="1" checked> Masculino<br>
-                                  <input type="radio" name="gender_id" value="2"> Femenino<br>
-                                  <input type="radio" name="gender_id" value="3"> Other
+                                  <input type="radio" id="gender_id" name="gender_id" value="1" checked> Masculino<br>
+                                  <input type="radio" id="gender_id" name="gender_id" value="2"> Femenino<br>
+                                  <input type="radio" id="gender_id" name="gender_id" value="3"> Other
                                 </div>
                             </div>
 

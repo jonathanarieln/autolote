@@ -49573,8 +49573,8 @@ function siguienteTab1() {
          label_surname.innerHTML='Apellidos: '+document.getElementById('surname').value;
          label_birthdate.innerHTML='Fecha de Nacimiento: '+document.getElementById('birthdate').value;
          label_phone_number.innerHTML='Numero Telefonico: '+document.getElementById('phone_number').value;
-         //Pendiente obtener valor de un button group
-         //label_gender.innerHTML='Genero: '+document.getElementById('gender_id').value;
+         var gender = document.querySelector('input[name="gender_id"]:checked').value;
+         label_gender.innerHTML='Genero: '+gender;
          label_identification_number.innerHTML='Numero de Identidad: '+document.getElementById('identification_number').value;
          label_RTN_natural.innerHTML='RTN: '+document.getElementById('RTN_natural').value;
 
