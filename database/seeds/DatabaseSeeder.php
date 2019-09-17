@@ -18,6 +18,16 @@ class DatabaseSeeder extends Seeder
            PermissionsTableSeeder::class,
            LegalsTableSeeder::class,
            ClientsTableSeeder::class,
+           ColorsTableSeeder::class,
+           BrandsTableSeeder::class,
+           ModelosTableSeeder::class,
+           LocationsTableSeeder::class,
+           CarTypesTableSeeder::class,
+           CarsTableSeeder::class,
+           MovementsTableSeeder::class,
+           OrderTypesTableSeeder::class,
+           OrdersTableSeeder::class,
+           CarOrderTableSeeder::class,
          ]);
     }
 }

@@ -49,9 +49,23 @@
                                 </li>
                             @endif --}}
                         @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="/clients">{{ __('Clientes') }}</a>
-                            </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="/orders">{{ __('Ordenes') }}</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="/cars">{{ __('Autos') }}</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="/reports">{{ __('Reportes') }}</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="/clients">{{ __('Clientes') }}</a>
+                          </li>
+                            @can ('admin')
+                              <li class="nav-item">
+                                  <a class="nav-link" href="/users">{{ __('Usuarios') }}</a>
+                              </li>
+                            @endcan
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->user_name }} <span class="caret"></span>
