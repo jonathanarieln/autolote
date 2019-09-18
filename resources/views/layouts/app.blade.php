@@ -16,6 +16,10 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+
+    <!-- Icono de la barra del navegador -->
+    <link rel="shortcut icon" href="{{ asset('images/LogoAL.ico') }}">
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -49,6 +53,9 @@
                                 </li>
                             @endif --}}
                         @else
+                          <li class="nav-item">
+                              <a class="nav-link" href="/orders/create">{{ __('Nueva Orden') }}</a>
+                          </li>
                           <li class="nav-item">
                               <a class="nav-link" href="/orders">{{ __('Ordenes') }}</a>
                           </li>

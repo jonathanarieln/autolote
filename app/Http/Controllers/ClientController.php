@@ -142,7 +142,7 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        //
+        return("editando");
     }
 
     /**
@@ -165,6 +165,18 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $client = Client::find($id);
+      try {
+      $client->delete();
+
+      return redirect()->route('clients.index');
+
+      } catch (\Illuminate\Database\QueryException $e) {
+          // var_dump($e->errorInfo);
+          // var_dump($client->id);
+
+          return  view('errors.foreign');
+
+      }
     }
 }

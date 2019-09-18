@@ -25,7 +25,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+          return view('/orders/create');
     }
 
     /**
@@ -58,7 +58,7 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        return("editando");
     }
 
     /**

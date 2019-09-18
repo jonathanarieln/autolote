@@ -9,6 +9,9 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
+        <!-- Icono de la barra del navegador -->
+        <link rel="shortcut icon" href="{{ asset('images/LogoAL.ico') }}">
+
         <!-- Styles -->
         <style>
             html, body {
@@ -81,7 +84,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Autolote
+                    <img src="{{ asset('images/LogoAL.png') }}" width="auto" height="auto">
                 </div>
 
                 <div class="links">

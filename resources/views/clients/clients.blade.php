@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div class="card text-white bg-dark">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Clientes</div>
 
                 <div class="card-body">
 
@@ -32,15 +32,13 @@
                                     <td>Natural</td>
                                     <td>{{$client->person->phone_number}}</td>
                                 @endif
-                                <td><a href="/clients/{{$client->id}}">Ver Detalles</a></td>
+                                <td><a class="btn btn-secondary btn-sm" href="/clients/{{$client->id}}">Ver Detalles</a></td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
 
-                    <a class="btn btn-dark btn-lg" href="clients/create" role="button">Nuevo Cliente</a>
-
-
+                    <a class="btn btn-secondary" href="clients/create" role="button">Nuevo Cliente</a>
 
                 </div>
             </div>

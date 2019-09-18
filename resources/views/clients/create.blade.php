@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div class="card text-white bg-dark">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Nuevo Cliente</div>
 
                 <div class="card-body">
 
@@ -44,7 +44,7 @@
 
                           <div style="overflow:auto;">
                             <div style="float:right;">
-                              <button type="button" class="btn btn-dark" onclick="siguienteTab1()">Siguiente</button>
+                              <button type="button" class="btn btn-secondary" onclick="siguienteTab1()">Siguiente</button>
                             </div>
                           </div>
 
@@ -55,7 +55,7 @@
                           	<h2>Persona Natural:</h2>
 
                             <div class="form-group row">
-                                <label for="first_name" class="col-md-4 col-form-label text-md-right">{{ __('first_name') }}</label>
+                                <label for="first_name" class="col-md-4 col-form-label text-md-right">{{ __('Nombres') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}"  autocomplete="first_name">
@@ -69,7 +69,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('surname') }}</label>
+                                <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('Apellidos') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="surname" type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}"  autocomplete="surname">
@@ -83,7 +83,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="birthdate" class="col-md-4 col-form-label text-md-right">{{ __('birthdate') }}</label>
+                                <label for="birthdate" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Nacimiento') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="birthdate" type="date" class="form-control @error('birthdate') is-invalid @enderror" name="birthdate" value="{{ old('birthdate') }}"  autocomplete="birthdate">
@@ -97,7 +97,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="phone_number" class="col-md-4 col-form-label text-md-right">{{ __('phone_number') }}</label>
+                                <label for="phone_number" class="col-md-4 col-form-label text-md-right">{{ __('Numero Telefonico') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}"  autocomplete="phone_number">
@@ -111,17 +111,17 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="gender_id" class="col-md-4 col-form-label text-md-right">{{ __('gender_id') }}</label>
+                                <label for="gender_id" class="col-md-4 col-form-label text-md-right">{{ __('Genero') }}</label>
 
                                 <div class="col-md-6">
                                   <input type="radio" id="gender_id" name="gender_id" value="1" checked> Masculino<br>
                                   <input type="radio" id="gender_id" name="gender_id" value="2"> Femenino<br>
-                                  <input type="radio" id="gender_id" name="gender_id" value="3"> Other
+                                  <input type="radio" id="gender_id" name="gender_id" value="3"> Otro
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="identification_number" class="col-md-4 col-form-label text-md-right">{{ __('identification_number') }}</label>
+                                <label for="identification_number" class="col-md-4 col-form-label text-md-right">{{ __('Numero de Identidad') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="identification_number" type="text" class="form-control @error('identification_number') is-invalid @enderror" name="identification_number" value="{{ old('identification_number') }}"  autocomplete="identification_number">
@@ -135,7 +135,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="RTN_natural" class="col-md-4 col-form-label text-md-right">{{ __('RTN_natural') }}</label>
+                                <label for="RTN_natural" class="col-md-4 col-form-label text-md-right">{{ __('RTN') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="RTN_natural" type="text" class="form-control @error('RTN_natural') is-invalid @enderror" name="RTN_natural" value="{{ old('RTN_natural') }}"  autocomplete="RTN_natural">
@@ -150,8 +150,8 @@
 
                             <div style="overflow:auto;">
                               <div style="float:right;">
-                                <button type="button" class="btn btn-dark" onclick="volverTab1()">Anterior</button>
-                                <button type="button" class="btn btn-dark" onclick="siguienteTab2()">Siguiente</button>
+                                <button type="button" class="btn btn-secondary" onclick="volverTab1()">Anterior</button>
+                                <button type="button" class="btn btn-secondary" onclick="siguienteTab2()">Siguiente</button>
                               </div>
                             </div>
 
@@ -162,7 +162,7 @@
                           	<h2>Persona Juridica:</h2>
 
                             <div class="form-group row">
-                                <label for="legal_name" class="col-md-4 col-form-label text-md-right">{{ __('legal_name') }}</label>
+                                <label for="legal_name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre Empresa') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="legal_name" type="text" class="form-control @error('legal_name') is-invalid @enderror" name="legal_name" value="{{ old('legal_name') }}"  autocomplete="legal_name">
@@ -176,7 +176,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="contact_name" class="col-md-4 col-form-label text-md-right">{{ __('contact_name') }}</label>
+                                <label for="contact_name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre Contacto') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="contact_name" type="text" class="form-control @error('contact_name') is-invalid @enderror" name="contact_name" value="{{ old('contact_name') }}"  autocomplete="contact_name">
@@ -191,7 +191,7 @@
 
 
                             <div class="form-group row">
-                                <label for="contact_phone_number" class="col-md-4 col-form-label text-md-right">{{ __('contact_phone_number') }}</label>
+                                <label for="contact_phone_number" class="col-md-4 col-form-label text-md-right">{{ __('Numero Telefonico del Contacto') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="contact_phone_number" type="text" class="form-control @error('contact_phone_number') is-invalid @enderror" name="contact_phone_number" value="{{ old('contact_phone_number') }}"  autocomplete="contact_phone_number">
@@ -205,7 +205,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="RTN_juridico" class="col-md-4 col-form-label text-md-right">{{ __('RTN_juridico') }}</label>
+                                <label for="RTN_juridico" class="col-md-4 col-form-label text-md-right">{{ __('RTN') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="RTN_juridico" type="text" class="form-control @error('RTN_juridico') is-invalid @enderror" name="RTN_juridico" value="{{ old('RTN_juridico') }}"  autocomplete="RTN_juridico">
@@ -220,8 +220,8 @@
 
                             <div style="overflow:auto;">
                               <div style="float:right;">
-                                <button type="button" class="btn btn-dark" onclick="volverTab1()">Anterior</button>
-                                <button type="button" class="btn btn-dark" onclick="siguienteTab2()">Siguiente</button>
+                                <button type="button" class="btn btn-secondary" onclick="volverTab1()">Anterior</button>
+                                <button type="button" class="btn btn-secondary" onclick="siguienteTab2()">Siguiente</button>
                               </div>
                             </div>
 
@@ -247,8 +247,8 @@
                             <div style="overflow:auto;">
                               <div style="float:right;">
 
-                              <button type="button" class="btn btn-dark" onclick="volverTab2()">Anterior</button>
-                              <button type="submit" class="btn btn-dark">Confirmar</button>
+                              <button type="button" class="btn btn-secondary" onclick="volverTab2()">Anterior</button>
+                              <button type="submit" class="btn btn-secondary">Confirmar</button>
 
                             </div>
                           </div>

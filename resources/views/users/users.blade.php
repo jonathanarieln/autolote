@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card text-white bg-dark">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Usuarios</div>
 
                 <div class="card-body">
 
@@ -27,7 +27,7 @@
                         </tbody>
                     </table>
 
-                    <a class="btn btn-dark btn-lg" href="users/create" role="button">Nuevo Usuario</a>
+                    <a class="btn btn-secondary btn-lg" href="users/create" role="button">Nuevo Usuario</a>
 
 
 

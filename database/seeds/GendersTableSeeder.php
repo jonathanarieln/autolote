@@ -13,17 +13,17 @@ class GendersTableSeeder extends Seeder
     public function run()
     {
       DB::table('genders')->insert([
-          'gender_name' => 'masculino',
+          'gender_name' => 'Masculino',
           'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
           'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
       ]);
       DB::table('genders')->insert([
-          'gender_name' => 'femenino',
+          'gender_name' => 'Femenino',
           'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
           'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
       ]);
       DB::table('genders')->insert([
-          'gender_name' => 'indefinido',
+          'gender_name' => 'Otro',
           'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
           'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
       ]);
