@@ -6,6 +6,8 @@ use App\Client;
 use App\Person;
 use App\Legal;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 class ClientController extends Controller
 {
@@ -55,15 +57,15 @@ class ClientController extends Controller
             'identification_number' => 'required|unique:people,identification_number',
             'RTN_natural' => 'required|unique:clients,RTN',
         ],[
-             'first_name.required' => 'Campo nombre es obligatorio!',
-             'surname.required' => 'Campo surname es obligatorio!',
-             'birthdate.required' => 'Campo birthdate es obligatorio!',
-             'phone_number.required' => 'Campo phone_number es obligatorio!',
-             'gender_id.required' => 'Campo gender_id es obligatorio!',
-             'identification_number.required' => 'Campo identification_number es obligatorio!',
-             'identification_number.unique' => 'Campo identification_number ya fue utilizado!',
-             'RTN_natural.required' => 'Campo RTN_natural es obligatorio!',
-             'RTN_natural.unique' => 'Campo RTN_natural ya fue utilizado!',
+             'first_name.required' => 'Campo Nombres es obligatorio!',
+             'surname.required' => 'Campo Apellidos es obligatorio!',
+             'birthdate.required' => 'Campo Fecha de Nacimiento es obligatorio!',
+             'phone_number.required' => 'Campo Numero de Telefono es obligatorio!',
+             'gender_id.required' => 'Campo Genero es obligatorio!',
+             'identification_number.required' => 'Campo Numero de identidad es obligatorio!',
+             'identification_number.unique' => 'Campo Numero de Indentidad ya fue utilizado!',
+             'RTN_natural.required' => 'Campo RTN es obligatorio!',
+             'RTN_natural.unique' => 'Campo RTN ya fue utilizado!',
         ]);
 
        $person = Person::create([
@@ -82,7 +84,7 @@ class ClientController extends Controller
             'RTN' => $Datos['RTN_natural'],
           ]);
 
-        return view('clients.show',  ['client' => $client]);
+        return view('clients.show', compact('client'));
 
       }else{
         $Datos = request()->validate([
@@ -91,12 +93,12 @@ class ClientController extends Controller
             'contact_phone_number' => 'required',
             'RTN_juridico' => 'required|unique:clients,RTN',
         ],[
-             'legal_name.required' => 'Campo legal_name es obligatorio!',
-             'legal_name.unique' => 'Campo legal_name ya fue utilizado!',
-             'contact_name.required' => 'Campo contact_name es obligatorio!',
-             'contact_phone_number.required' => 'Campo contact_phone_number es obligatorio!',
-             'RTN_juridico.required' => 'Campo RTN_juridico es obligatorio!',
-             'RTN_juridico.unique' => 'Campo RTN_juridico ya fue utilizado!',
+             'legal_name.required' => 'Campo Nombre Empresa es obligatorio!',
+             'legal_name.unique' => 'Campo Nombre Empresa ya fue utilizado!',
+             'contact_name.required' => 'Campo Nombre Contacti es obligatorio!',
+             'contact_phone_number.required' => 'Campo Numero de Telefono de Contacto es obligatorio!',
+             'RTN_juridico.required' => 'Campo RTN es obligatorio!',
+             'RTN_juridico.unique' => 'Campo RTN ya fue utilizado!',
         ]);
 
         $legal = Legal::create([
@@ -112,7 +114,7 @@ class ClientController extends Controller
              'RTN' => $Datos['RTN_juridico'],
            ]);
 
-         return view('clients.show',  ['client' => $client]);
+         return view('clients.show',compact('client'));
       }
 
 
@@ -142,7 +144,11 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        return("editando");
+      // get the nerd
+      $client = Client::find($id);
+
+      // show the view and pass the nerd to it
+      return view('clients.edit',compact('client'));
     }
 
     /**
@@ -154,7 +160,75 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $client = Client::find($id);
+      $Datos = request()->validate([
+          'person' => 'required',
+      ],[
+           'person.required' => 'Campo person es obligatorio!',
+      ]);
+
+      if($Datos['person']=='Natural'){
+        $person = $client->person;
+        $Datos = request()->validate([
+            'first_name' => 'required',
+            'surname' => 'required',
+            'birthdate' => 'required',
+            'phone_number' => 'required',
+            'gender_id' => 'required',
+            'identification_number' => ['required',
+                  Rule::unique('people')->ignore($person, 'id'),
+                  'max:50'],
+            'RTN' => ['required',
+                  Rule::unique('clients')->ignore($id, 'id'),
+                  'max:50'],
+        ],[
+             'first_name.required' => 'Campo Nombres es obligatorio!',
+             'surname.required' => 'Campo Apellidos es obligatorio!',
+             'birthdate.required' => 'Campo Fecha de Nacimiento es obligatorio!',
+             'phone_number.required' => 'Campo Numero de Telefono es obligatorio!',
+             'gender_id.required' => 'Campo Genero es obligatorio!',
+             'identification_number.required' => 'Campo Numero de Identidad es obligatorio!',
+             'identification_number.unique' => 'Campo Numero de Identidad ya fue utilizado!',
+             'RTN_natural.required' => 'Campo RTN es obligatorio!',
+             'RTN_natural.unique' => 'Campo RTN ya fue utilizado!',
+        ]);
+
+         $person->update($Datos);
+
+          $client->update($Datos);
+
+        return view('clients.show', compact('client'));
+
+      }else{
+        $legal = $client->legal;
+        $Datos = request()->validate([
+            'legal_name' => ['required',
+                  Rule::unique('legals')->ignore($id, 'id'),
+                  'max:50'],
+            'contact_name' => 'required',
+            'contact_phone_number' => 'required',
+            'RTN' => ['required',
+                  Rule::unique('clients')->ignore($id, 'id'),
+                  'max:50'],
+        ],[
+             'legal_name.required' => 'Campo Nombre Empresa es obligatorio!',
+             'legal_name.unique' => 'Campo Nombre Empresa ya fue utilizado!',
+             'contact_name.required' => 'Campo Nombre Contacto es obligatorio!',
+             'contact_phone_number.required' => 'Campo Numero De Telefono de Contacto es obligatorio!',
+             'RTN_juridico.required' => 'Campo RTN es obligatorio!',
+             'RTN_juridico.unique' => 'Campo RTN ya fue utilizado!',
+        ]);
+
+        $legal->update($Datos);
+
+
+           $client->update($Datos);
+
+         return view('clients.show',compact('client'));
+      }
+
+
+
     }
 
     /**

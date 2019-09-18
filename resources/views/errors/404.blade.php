@@ -10,6 +10,7 @@
                 <div class="card-body">
 
                     <h1 class="display-2">404</h1>
+                    <p>El recurso que solicito ni existe</p>
 
                 </div>
             </div>

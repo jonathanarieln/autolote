@@ -9,20 +9,277 @@
 
                 <div class="card-body">
 
-                  <table class = "table table-hover table-responsive">
-                      <thead>
-                      <tr>
-                          <th>Id</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      @foreach ($Clients as $Client)
-                          <tr>
-                              <td>{{$Client->Id}}</td>
-                          </tr>
-                      @endforeach
-                      </tbody>
-                  </table>
+                  @if($errors->any())
+                      <div class="alert alert-danger">
+                      <p >Atencion!</p>
+                      <ul>
+                          @foreach($errors->all() as $error)
+                              <li>{{$error}}</li>
+                          @endforeach
+                      </ul>
+                      </div>
+                  @endif
+
+                  <form id="client_form_id" action="/clients/{{$client->id}}" method="POST">
+                      {{method_field('PUT')}}
+                      {{ csrf_field() }}
+
+                      <!-- Circles which indicates the steps of the form: -->
+                      <div style="text-align:center;">
+                        <span class="step" id="step1"></span>
+                        <span class="step" id="step2"></span>
+                        <span class="step" id="step3"></span>
+                      </div>
+
+                      <div class="tab" id="tab1">
+
+                          <h2>Que clase de cliente creara:</h2>
+
+                              @if ($client->is_legal)
+                                      <input type="radio" value="Natural" id="radioPerson" name="person" disabled>
+                                      <label for="Natural">Persona Natural</label>
+
+
+                                      <input type="radio" value="Juridico" name="person" checked>
+                                      <label for="Juridico">Persona Juridica</label>
+                              @else
+                                      <input type="radio" value="Natural" id="radioPerson" name="person" checked>
+                                      <label for="Natural">Persona Natural</label>
+
+
+                                      <input type="radio" value="Juridico" name="person" disabled>
+                                      <label for="Juridico">Persona Juridica</label>
+                              @endif
+
+
+
+
+                          <div style="overflow:auto;">
+                            <div style="float:right;">
+                              <button type="button" class="btn btn-secondary" onclick="siguienteTab1()">Siguiente</button>
+                            </div>
+                          </div>
+
+                        </div>
+
+
+                          <div class="tab" id="tab3">
+                          @if ($client->is_legal)
+
+                                <h2>Persona Juridica:</h2>
+
+                                <div class="form-group row">
+                                    <label for="legal_name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre Empresa') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="legal_name" type="text" class="form-control @error('legal_name') is-invalid @enderror" name="legal_name" value="{{ old('legal_name',$client->legal->legal_name) }}"  autocomplete="legal_name">
+
+                                        @error('legal_name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="contact_name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre Contacto') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="contact_name" type="text" class="form-control @error('contact_name') is-invalid @enderror" name="contact_name" value="{{ old('contact_name',$client->legal->contact_name) }}"  autocomplete="contact_name">
+
+                                        @error('contact_name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <label for="contact_phone_number" class="col-md-4 col-form-label text-md-right">{{ __('Numero Telefonico del Contacto') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="contact_phone_number" type="text" class="form-control @error('contact_phone_number') is-invalid @enderror" name="contact_phone_number" value="{{ old('contact_phone_number',$client->legal->contact_phone_number) }}"  autocomplete="contact_phone_number">
+
+                                        @error('contact_phone_number')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="RTN_juridico" class="col-md-4 col-form-label text-md-right">{{ __('RTN') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="RTN_juridico" type="text" class="form-control @error('RTN') is-invalid @enderror" name="RTN" value="{{ old('RTN_juridico',$client->RTN) }}"  autocomplete="RTN_juridico">
+
+                                        @error('RTN')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div style="overflow:auto;">
+                                  <div style="float:right;">
+                                    <button type="button" class="btn btn-secondary" onclick="volverTab1()">Anterior</button>
+                                    <button type="button" class="btn btn-secondary" onclick="siguienteTab2()">Siguiente</button>
+                                  </div>
+                                </div>
+
+
+                          @endif
+
+                            </div>
+
+                            <div class="tab" id="tab2">
+                          @if (!$client->is_legal)
+
+
+                                    <h2>Persona Natural:</h2>
+
+                                    <div class="form-group row">
+                                        <label for="first_name" class="col-md-4 col-form-label text-md-right">{{ __('Nombres') }}</label>
+
+                                        <div class="col-md-6">
+                                            <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name',$client->person->first_name) }}"  autocomplete="first_name">
+
+                                            @error('first_name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('Apellidos') }}</label>
+
+                                        <div class="col-md-6">
+                                            <input id="surname" type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname',$client->person->surname) }}"  autocomplete="surname">
+
+                                            @error('surname')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="birthdate" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Nacimiento') }}</label>
+
+                                        <div class="col-md-6">
+                                          {{-- El input aun no regresa la fecha de cumplaños pero si tra el valor en fomato yyy mm dd hh mm ss --}}
+                                            <input id="birthdate" type="date" class="form-control @error('birthdate') is-invalid @enderror" name="birthdate" value="{{ old('birthdate',$client->person->birthdate) }}"  autocomplete="birthdate">
+                                            @error('birthdate')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="phone_number" class="col-md-4 col-form-label text-md-right">{{ __('Numero Telefonico') }}</label>
+
+                                        <div class="col-md-6">
+                                            <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number',$client->person->phone_number) }}"  autocomplete="phone_number">
+
+                                            @error('phone_number')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="gender_id" class="col-md-4 col-form-label text-md-right">{{ __('Genero') }}</label>
+
+                                        <div class="col-md-6">
+                                          <input type="radio" id="gender_id" name="gender_id" value="1" checked> Masculino<br>
+                                          <input type="radio" id="gender_id" name="gender_id" value="2"> Femenino<br>
+                                          <input type="radio" id="gender_id" name="gender_id" value="3"> Otro
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="identification_number" class="col-md-4 col-form-label text-md-right">{{ __('Numero de Identidad') }}</label>
+
+                                        <div class="col-md-6">
+                                            <input id="identification_number" type="text" class="form-control @error('identification_number') is-invalid @enderror" name="identification_number" value="{{ old('identification_number',$client->person->identification_number) }}"  autocomplete="identification_number">
+
+                                            @error('identification_number')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="RTN" class="col-md-4 col-form-label text-md-right">{{ __('RTN') }}</label>
+
+                                        <div class="col-md-6">
+                                            <input id="RTN_natural" type="text" class="form-control @error('RTN') is-invalid @enderror" name="RTN" value="{{ old('RTN',$client->RTN) }}"  autocomplete="RTN">
+
+                                            @error('RTN')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div style="overflow:auto;">
+                                      <div style="float:right;">
+                                        <button type="button" class="btn btn-secondary" onclick="volverTab1()">Anterior</button>
+                                        <button type="button" class="btn btn-secondary" onclick="siguienteTab2()">Siguiente</button>
+                                      </div>
+                                    </div>
+
+                          @endif
+                           </div>
+
+
+
+                        <div class="tab" id="tab4">
+
+                            <h2>Confirmar:</h2>
+
+                            <h5 id="label_person"></h5>
+                            <h5 id="label_first_name"></h5>
+                            <h5 id="label_surname"></h5>
+                            <h5 id="label_birtdate"></h5>
+                            <h5 id="label_phone_number"></h5>
+                            <h5 id="label_gender"></h5>
+                            <h5 id="label_identification_number"></h5>
+                            <h5 id="label_RTN_natural"></h5>
+                            <h5 id="label_legal_name"></h5>
+                            <h5 id="label_contact_number"></h5>
+                            <h5 id="label_contact_phone_number"></h5>
+                            <h5 id="label_RTN_juridico"></h5>
+
+                            <div style="overflow:auto;">
+                              <div style="float:right;">
+
+                              <button type="button" class="btn btn-secondary" onclick="volverTab2()">Anterior</button>
+                              <button type="submit" class="btn btn-secondary">Confirmar</button>
+
+                            </div>
+                          </div>
+
+
+
+                        </div>
+
+                   </form>
 
                 </div>
             </div>

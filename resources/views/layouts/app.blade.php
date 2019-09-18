@@ -60,10 +60,10 @@
                               <a class="nav-link" href="/orders">{{ __('Ordenes') }}</a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link" href="/cars">{{ __('Autos') }}</a>
+                              <a class="nav-link" href="/cars">{{ __('Vehículos') }}</a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link" href="/reports">{{ __('Reportes') }}</a>
+                              <a class="nav-link" href="/errors/404">{{ __('Reportes') }}</a>
                           </li>
                           <li class="nav-item">
                               <a class="nav-link" href="/clients">{{ __('Clientes') }}</a>

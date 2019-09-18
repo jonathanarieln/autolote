@@ -19,6 +19,16 @@ Route::get('/', function () {
 //RUTAS AUTH
 Auth::routes();
 
+//Rutas para los errores
+Route::get('/errors/404', function () {
+    return view('errors.404');
+});
+
+//Rutas para los errores
+Route::get('/errors/foreign', function () {
+    return view('errors.foreign');
+});
+
 // RUTA PARA EL HOME
 Route::get('/home', 'HomeController@index')->name('home');
 

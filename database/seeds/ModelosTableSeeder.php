@@ -25,8 +25,8 @@ class ModelosTableSeeder extends Seeder
           'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
       ]);
       DB::table('modelos')->insert([
-          'model_name' => 'Matrix',
-          'brand_id' => '1',
+          'model_name' => 'CRV',
+          'brand_id' => '2',
           'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
           'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
       ]);
