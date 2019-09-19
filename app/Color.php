@@ -10,4 +10,9 @@ class Color extends Model
   {
     return $this->hasMany(Car::class);
   }
+
+  public function temp_cars()
+  {
+    return $this->hasMany(TempCar::class);
+  }
 }

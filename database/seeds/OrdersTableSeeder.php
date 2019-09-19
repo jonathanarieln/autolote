@@ -14,6 +14,7 @@ class OrdersTableSeeder extends Seeder
     {
       DB::table('orders')->insert([
           'value' => 681600.00,
+          'comments'=>'Sin observaciones',
           'client_id' => 1,
           'user_id' => 2,
           'order_type_id' => 1,

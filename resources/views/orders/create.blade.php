@@ -19,7 +19,7 @@
                                <div class="col-md-4">
                                    <h2>Tipo Orden</h2>
 
-                                       <p>Contenido de la columna 1 posiblemente un combo box con el tipo de orden. </p>
+                                       <p>Aca van los tipos de ordenes que salen de order_type. </p>
 
                                    <p><a class="btn btn-secondary" href="/errors/404" role="button">
                                            Aceptar... &raquo;</a></p>
@@ -27,18 +27,19 @@
                                </div>
                                <div class="col-md-4">
                                    <h2>Cliente</h2>
-                                       <p>Contenido de la columna 2 aca se seleccionara el cliente si no hay cliente debe crear uno nuevo. </p>
 
-                                       <p><a class="btn btn-secondary"  href="/errors/404" role="button">
-                                               Aceptar... &raquo;</a></p>
-
-                               </div>
-                               <div class="col-md-4">
-                                   <h2>Cliente nuevo</h2>
-                                       <p>Aca ira un boton para un nuevo cliente o alguna otra cosa. </p>
+                                       <h3>ACA VA UN COMBO BOX DE CLIENTES</h3>
 
                                        <p><a class="btn btn-secondary"  href="/clients/create" role="button">
                                                Nuevo Cliente... &raquo;</a></p>
+
+                               </div>
+                               <div class="col-md-4">
+                                   <h2>Orden de Ingreso</h2>
+                                       <p>Orden especializada para ingresar vehiculos nuevos al autolote. </p>
+
+                                       <p><a class="btn btn-secondary"  href="/order_in" role="button">
+                                               Orden Ingreso... &raquo;</a></p>
 
                                </div>
                            </div>
@@ -147,6 +148,9 @@
                                    <hr>
 
                                </div> <!-- /container -->
+
+                               <p><a class="btn btn-secondary btn-lg" href="/orders/create" role="button">
+                                           Limpiar Orden &raquo;</a></p>
 
                                <p><a class="btn btn-secondary btn-lg" href="/errors/404" role="button">
                                            Generar Orden &raquo;</a></p>

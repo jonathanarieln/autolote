@@ -16,6 +16,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->double('value');
+            $table->string('comments',200);
             $table->bigInteger('order_type_id')->unsigned();
             $table->foreign('order_type_id')->references('id')->on('order_types');
             $table->bigInteger('client_id')->unsigned();

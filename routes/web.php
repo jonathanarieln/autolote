@@ -43,6 +43,18 @@ Route::middleware(['auth'])->group(function () {
     //RUTAS ORDENES
     Route::resource('orders', 'OrderController');
 
+    //ruta para acceder a una orden de ingreso
+    Route::get('/order_in', 'OrderController@order_in');
+
+    //ruta para acceder a una orden de ingreso
+    Route::post('/order_in', 'OrderController@order_in_store');
+
+    //ruta para agregar vehiculos a una orden
+    Route::get('/order_in_new', 'OrderController@order_in_new');
+
+    //ruta para limpiar las orden del usuario actual
+    Route::get('/order_clean', 'OrderController@order_clean');
+
     //RUTA PARA MANEJO DE USUARIOS
     Route::resource('users', 'UserController')
                                                        ->middleware('permission:admin');

@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
       return $this->hasMany(Order::class);
     }
+
+    public function car_temps()
+    {
+      return $this->hasMany(CarTemp::class);
+    }
 }
