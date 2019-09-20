@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Order;
 use App\TempCar;
 use App\Color;
@@ -10,7 +11,10 @@ use App\Modelo;
 use App\Brand;
 use App\CarType;
 use App\Location;
+use App\Car;
+use App\Movement;
 use Auth;
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -124,7 +128,67 @@ class OrderController extends Controller
       }
 
       $cars = TempCar::where("user_id","=",Auth::user()->id)->get();
-      return view('orders.order_in', compact('cars'));
+      $price = TempCar::sum('price');
+      return view('orders.order_in', compact(['cars','price']));
+    }
+
+    public function order_type_in_store()
+    {
+
+      //obtenemos los datos en base de datos encargados del ingreso de autos
+      $cars = TempCar::where("user_id","=",Auth::user()->id)->get();
+      $price = TempCar::sum('price');
+
+      $orderNew = Order::create([
+           'client_id'=> 2,
+           'order_type_id'=> 1,
+           'user_id'=> Auth::user()->id,
+           'comments'=> "Orden Exitosa",
+           'value'=> $price,
+         ]);
+
+      //Por cada uno de los vehiculos en base guardamos en la tablla cars
+      foreach ($cars as $car) {
+        $location = Location::find($car->location_id);
+        $location->available = false;
+        $location->update();
+        $carNew = Car::create([
+             'plate'=> $car->plate,
+             'engine'=> $car->engine,
+             'chassis'=> $car->chassis,
+             'year'=> $car->year,
+             'available' => true,
+             'price'=> $car->price,
+             'color_id'=> $car->color_id,
+             'brand_id'=> $car->brand_id,
+             'modelo_id'=> $car->modelo_id,
+             'car_type_id'=> $car->car_type_id,
+             'location_id'=> $car->location_id,
+           ]);
+           $movementNew = Movement::create([
+                'movement_name'=> "Ingreso",
+                'available'=> 1,
+                'car_id'=> $carNew->id,
+              ]);
+
+              DB::table('car_order')->insert([
+                  'car_id' => $carNew->id,
+                  'order_id' => $orderNew->id,
+                  'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                  'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+              ]);
+
+
+
+        $car->delete();
+      }
+
+      $cars = TempCar::where("user_id","=",Auth::user()->id)->get();
+
+      $price = TempCar::sum('price');
+
+      $orders = Order::all();
+      return redirect()->route('orders.index');
     }
 
     /**
@@ -156,7 +220,8 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = Order::find($id);
+        return view('orders.show', ['order' => $order]);
     }
 
     /**
@@ -190,6 +255,6 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return("eliminando");
     }
 }

@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+
+  protected $fillable = ['client_id', 'user_id', 'order_type_id',"comments","value"];
+
   public function order_type()
   {
      return $this->belongsTo(OrderType::class);

@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Car extends Model
 {
+
+  protected $fillable = ['plate', 'engine', 'chassis', 'year', 'price', 'available','color_id','brand_id','modelo_id','car_type_id','location_id'];
+
   public function movements()
   {
     return $this->hasMany(Movement::class);

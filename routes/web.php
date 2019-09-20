@@ -35,13 +35,22 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware(['auth'])->group(function () {
 
     //RUTAS CLIENTES
-    Route::resource('clients', 'ClientController');
+    Route::resource('clients', 'ClientController')->names([
+      'clients'=>'clients.index',
+    ]);
 
     //RUTAS autos
     Route::resource('cars', 'CarController');
 
     //RUTAS ORDENES
-    Route::resource('orders', 'OrderController');
+    Route::resource('orders', 'OrderController')->names([
+      'orders'=>'orders.index',
+    ]);
+    // //Rutas resources
+    // Route::resources([
+    //                    'clients'=>'ClientController',
+    //                    'cars'=>'CarController',
+    //                    'orders'=>'OrderController']);
 
     //ruta para acceder a una orden de ingreso
     Route::get('/order_in', 'OrderController@order_in');
@@ -51,6 +60,9 @@ Route::middleware(['auth'])->group(function () {
 
     //ruta para agregar vehiculos a una orden
     Route::get('/order_in_new', 'OrderController@order_in_new');
+
+    //ruta para agregar vehiculos a una orden
+    Route::get('/order_type_in_store', 'OrderController@order_type_in_store');
 
     //ruta para limpiar las orden del usuario actual
     Route::get('/order_clean', 'OrderController@order_clean');

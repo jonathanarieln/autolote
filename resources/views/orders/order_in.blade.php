@@ -128,7 +128,7 @@
                                <p><a class="btn btn-secondary btn-lg" href="/order_clean" role="button">
                                            Limpiar Orden &raquo;</a></p>
 
-                               <p><a class="btn btn-secondary btn-lg" href="/errors/404" role="button">
+                               <p><a class="btn btn-secondary btn-lg" href="/order_type_in_store" role="button">
                                            Generar Orden &raquo;</a></p>
 
                            </div>
