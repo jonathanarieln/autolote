@@ -13,6 +13,7 @@ use App\CarType;
 use App\Location;
 use App\Car;
 use App\Movement;
+use App\Client;
 use Auth;
 use Carbon\Carbon;
 
@@ -38,7 +39,8 @@ class OrderController extends Controller
     {
       $price = TempCar::sum('price');
       $cars = TempCar::where("user_id","=",Auth::user()->id)->get();
-      return view('orders.order_in', compact(['cars','price']));
+      $clients = Client::all();
+      return view('orders.order_in', compact(['cars','price','clients']));
     }
 
     /**
@@ -55,7 +57,8 @@ class OrderController extends Controller
       $car_types = CarType::all();
       $locations = Location::where("available","=",true)
                              ->get();
-      return view('orders.order_in_new',compact(['price','colors','brands','models','car_types','locations']));
+      $clients = Client::all();
+      return view('orders.order_in_new',compact(['price','colors','brands','models','car_types','locations','clients']));
     }
 
     /**
@@ -96,7 +99,7 @@ class OrderController extends Controller
            'engine'=> $Datos['engine'],
            'chassis'=> $Datos['chassis'],
            'year'=> $Datos['year'],
-           'price'=> $Datos['price'],
+           'price'=> str_replace(",","",$Datos['price']),
            'color_id'=> $Datos['color_id'],
            'brand_id'=> $Datos['brand_id'],
            'modelo_id'=> $Datos['modelo_id'],
@@ -108,7 +111,8 @@ class OrderController extends Controller
 
       $cars = TempCar::where("user_id","=",Auth::user()->id)->get();
       $price = TempCar::sum('price');
-      return view('orders.order_in', compact(['cars','price']));
+      $clients = Client::all();
+      return view('orders.order_in', compact(['cars','price','clients']));
     }
 
     /**

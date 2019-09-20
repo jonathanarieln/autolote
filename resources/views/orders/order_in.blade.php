@@ -21,13 +21,30 @@
 
                                        <h3>Seleccione el cliente que al cual le compraremos los vehiculos</h3>
 
+
+                                      <select class="" name="">
+
+                                       @foreach ($clients as $client)
+                                        @if ($client->is_legal)
+                                          <option value="{{$client->id}}">{{$client->legal->legal_name}}</option>
+                                        @else
+                                           <option value="{{$client->id}}">{{$client->person->first_name." ".$client->person->surname}}</option>
+                                        @endif
+                                       @endforeach
+
+                                       </select>
+
                                        <p><a class="btn btn-secondary"  href="/clients/create" role="button">
                                                Nuevo Cliente... &raquo;</a></p>
 
                                </div>
                                <div class="col-md-6">
-                                   <h2>Instrucciones</h2>
-                                       <p>pueden Ir las instrucciones Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+                                   <h2>Titulo 2</h2>
+                                           <p><a class="btn btn-secondary btn-lg" href="/order_clean" role="button">
+                                                       Limpiar Orden &raquo;</a></p>
+
+                                           <p><a class="btn btn-secondary btn-lg" href="/order_type_in_store" role="button">
+                                                       Generar Orden &raquo;</a></p>
 
                                </div>
                            </div>
@@ -125,11 +142,7 @@
 
                                </div> <!-- /container -->
 
-                               <p><a class="btn btn-secondary btn-lg" href="/order_clean" role="button">
-                                           Limpiar Orden &raquo;</a></p>
 
-                               <p><a class="btn btn-secondary btn-lg" href="/order_type_in_store" role="button">
-                                           Generar Orden &raquo;</a></p>
 
                            </div>
                        </div>
