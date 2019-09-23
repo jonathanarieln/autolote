@@ -47,7 +47,11 @@ class CarController extends Controller
      */
     public function show($id)
     {
-        //
+      // get the car
+      $car = Car::find($id);
+
+      // mandamos los datos al show
+      return view('cars.show',compact('car'));
     }
 
     /**

@@ -43,4 +43,9 @@ class Car extends Model
   {
     return $this->belongsToMany(Order::class);
   }
+
+  public function to_hire_temp_cars()
+  {
+    return $this->belongsToMany(ToHireTempCar::class);
+  }
 }

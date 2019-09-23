@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrdersTable extends Migration
+class CreateToHireTempCarsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,10 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('to_hire_temp_cars', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->double('value');
-            $table->string('comments',200);
-            $table->integer('days')->default('0');
-            $table->bigInteger('order_type_id')->unsigned();
-            $table->foreign('order_type_id')->references('id')->on('order_types');
-            $table->bigInteger('client_id')->unsigned();
-            $table->foreign('client_id')->references('id')->on('clients');
+            $table->bigInteger('car_id')->unsigned();
+            $table->foreign('car_id')->references('id')->on('cars');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
@@ -35,6 +30,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('to_hire_temp_cars');
     }
 }

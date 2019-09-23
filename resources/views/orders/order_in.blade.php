@@ -31,7 +31,7 @@
 
                                    <form action="/order_type_in_store" method="POST">
                                        {{ csrf_field() }}
-                                          <h3>Seleccione el cliente que al cual le compraremos los vehiculos</h3>
+                                          <h3>Seleccione el cliente al cual le compraremos los vehiculos</h3>
                                            <select type="text" class="form-control" name="client_id" value="{{ old('client_id') }}"  autocomplete="client_id">
 
                                             @foreach ($clients as $client)

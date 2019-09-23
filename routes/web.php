@@ -52,6 +52,22 @@ Route::middleware(['auth'])->group(function () {
     //                    'cars'=>'CarController',
     //                    'orders'=>'OrderController']);
 
+
+    //ruta para acceder a una orden de arrendamiento
+    Route::get('/to_hire_order', 'OrderController@to_hire_order');
+
+    //ruta para guardar una orden de arrendamiento
+    Route::post('/to_hire_order', 'OrderController@to_hire_order_store');
+
+    //ruta para generar la orden
+    Route::post('/to_hire_order_type_store', 'OrderController@to_hire_order_type_store');
+
+    //ruta para agregar vehiculos a una orden
+    Route::get('/to_hire_order_new', 'OrderController@to_hire_order_new');
+
+    //ruta para limpiar la orden de arrendamioento
+    Route::get('/to_hire_order_clean', 'OrderController@to_hire_order_clean');
+
     //ruta para acceder a una orden de ingreso
     Route::get('/order_in', 'OrderController@order_in');
 

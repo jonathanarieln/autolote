@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Order;
 use App\TempCar;
+use App\ToHireTempCar;
 use App\Color;
 use App\Modelo;
 use App\Brand;
@@ -15,6 +16,7 @@ use App\Car;
 use App\Movement;
 use App\Client;
 use Auth;
+use Redirect;
 use Carbon\Carbon;
 
 class OrderController extends Controller
@@ -29,6 +31,133 @@ class OrderController extends Controller
       $orders = Order::all();
       return view('orders.orders', compact('orders'));
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function to_hire_order()
+    {
+      $clients = Client::all();
+      $to_hire_temp_cars = ToHireTempCar::where("user_id","=",Auth::user()->id)->get();
+      return view('orders.to_hire_order', compact(['clients','to_hire_temp_cars']));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function to_hire_order_new()
+    {
+      $cars = Car::where('available','=',true)->get();
+      return view('orders.to_hire_order_new',compact(['cars']));
+    }
+
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function to_hire_order_store()
+    {
+      //hacemos el guardado del nuevo vehiculo
+      $Datos = request()->validate([
+          'car_id' => 'required|unique:to_hire_temp_cars,car_id',
+      ],[
+           'car_id.required' => 'Campo Automovil es obligatorio!',
+           'car_id.unique' => 'El Automovil ya esta en la orden!',
+      ]);
+
+      $carNew = ToHireTempCar::create([
+           'car_id'=> $Datos['car_id'],
+           'user_id'=> Auth::user()->id,
+         ]);
+
+      $clients = Client::all();
+      $to_hire_temp_cars = ToHireTempCar::where("user_id","=",Auth::user()->id)->get();
+      return view('orders.to_hire_order', compact(['clients','to_hire_temp_cars']));
+    }
+
+    public function to_hire_order_clean()
+    {
+
+      //borramos los datos del usuario
+
+      $cars = ToHireTempCar::where("user_id","=",Auth::user()->id)->get();
+
+      foreach ($cars as $car) {
+        $car->delete();
+      }
+
+      $clients = Client::all();
+      $to_hire_temp_cars = ToHireTempCar::where("user_id","=",Auth::user()->id)->get();
+      return view('orders.to_hire_order', compact(['clients','to_hire_temp_cars']));
+    }
+
+
+    public function to_hire_order_type_store()
+    {
+      if(ToHireTempCar::count()==0){
+            return Redirect::back()->withErrors(['No ha ingresado ningun vehiculo']);
+      }else {
+        $Datos = request()->validate([
+          'client_id' => 'required',
+          'days' => 'required',
+        ],[
+          'client_id.required' => 'Campo Cliente es obligatorio!',
+          'days.required' => 'Campo Dias es obligatorio!',
+        ]);
+
+        //Guardamos todos los datos de las ORDENES aca comienza el guardado
+        //obtenemos los datos en base de datos encargados del ingreso de autos
+        $cars = ToHireTempCar::where("user_id","=",Auth::user()->id)->get();
+        $price = 9999.99;
+
+        $orderNew = Order::create([
+             'client_id'=> $Datos["client_id"],
+             'order_type_id'=> 3,
+             'user_id'=> Auth::user()->id,
+             'days'=> $Datos["days"],
+             'comments'=> "Orden de arrendamiento exitosa",
+             'value'=> $price,
+           ]);
+
+        //Por cada uno de los vehiculos en base guardamos en la tablla cars
+        foreach ($cars as $car) {
+          $location = Location::find($car->car->location_id);
+          $location->available = true;
+          $location->update();
+          $carLoc = Car::find($car->car->id);
+          $carLoc->available = false;
+          $carLoc->update();
+             $movementNew = Movement::create([
+                  'movement_name'=> "Arrendamiento",
+                  'available'=> 0,
+                  'car_id'=> $car->car->id,
+                ]);
+
+                DB::table('car_order')->insert([
+                    'car_id' => $car->car->id,
+                    'order_id' => $orderNew->id,
+                    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                    'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                ]);
+
+
+
+          $car->delete();
+        }
+
+        return redirect()->route('orders.index');
+
+        //termina el guardado de la orden
+      }
+    }
+
 
     /**
      * Display a listing of the resource.
@@ -139,6 +268,10 @@ class OrderController extends Controller
     public function order_type_in_store()
     {
 
+      if(TempCar::count()==0){
+            return Redirect::back()->withErrors(['No ha ingresado ningun vehiculo']);
+      }else{
+
         //Hacemos el validate al campo cliente por si alguien quiere pasar algo raro por html
         $Dato = request()->validate([
             'client_id' => 'required',
@@ -193,13 +326,10 @@ class OrderController extends Controller
 
         $car->delete();
       }
-
-      $cars = TempCar::where("user_id","=",Auth::user()->id)->get();
-
-      $price = TempCar::sum('price');
-
-      $orders = Order::all();
       return redirect()->route('orders.index');
+      }
+
+
     }
 
     /**
