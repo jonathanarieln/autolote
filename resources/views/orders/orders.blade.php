@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-4">
             <div class="card text-white bg-dark">
                 <div class="card-header">Ordenes</div>
 
@@ -13,14 +13,17 @@
                         <thead>
                         <tr>
                             <th>Id</th>
-                            <th>JSON</th>
+                            <th>Tipo</th>
+                            <th>Vehículos</th>
+                            <th>Detalles</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach ($orders as $order)
                             <tr>
                                 <td>{{$order->id}}</td>
-                                <td>{{$order}}</td>
+                                <td>{{$order->order_type->order_type_name}}</td>
+                                <td>{{count($order->cars)}}</td>
                                 <td><a href="/orders/{{$order->id}}">Ver Detalles</a></td>
                             </tr>
                         @endforeach

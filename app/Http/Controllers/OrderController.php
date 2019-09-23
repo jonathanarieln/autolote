@@ -139,12 +139,19 @@ class OrderController extends Controller
     public function order_type_in_store()
     {
 
+        //Hacemos el validate al campo cliente por si alguien quiere pasar algo raro por html
+        $Dato = request()->validate([
+            'client_id' => 'required',
+        ],[
+             'client_id.required' => 'Campo Cliente es obligatorio!',
+        ]);
+
       //obtenemos los datos en base de datos encargados del ingreso de autos
       $cars = TempCar::where("user_id","=",Auth::user()->id)->get();
       $price = TempCar::sum('price');
 
       $orderNew = Order::create([
-           'client_id'=> 2,
+           'client_id'=> $Dato["client_id"],
            'order_type_id'=> 1,
            'user_id'=> Auth::user()->id,
            'comments'=> "Orden Exitosa",

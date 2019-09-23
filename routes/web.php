@@ -61,8 +61,8 @@ Route::middleware(['auth'])->group(function () {
     //ruta para agregar vehiculos a una orden
     Route::get('/order_in_new', 'OrderController@order_in_new');
 
-    //ruta para agregar vehiculos a una orden
-    Route::get('/order_type_in_store', 'OrderController@order_type_in_store');
+    //ruta para generar la orden
+    Route::post('/order_type_in_store', 'OrderController@order_type_in_store');
 
     //ruta para limpiar las orden del usuario actual
     Route::get('/order_clean', 'OrderController@order_clean');

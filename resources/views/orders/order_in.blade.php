@@ -17,35 +17,50 @@
                            <!-- Example row of columns -->
                            <div class="row">
                                <div class="col-md-6">
-                                   <h2>Cliente</h2>
+                                   <h2>Orden de Ingreso</h2>
 
-                                       <h3>Seleccione el cliente que al cual le compraremos los vehiculos</h3>
-
-
-                                      <select class="" name="">
-
-                                       @foreach ($clients as $client)
-                                        @if ($client->is_legal)
-                                          <option value="{{$client->id}}">{{$client->legal->legal_name}}</option>
-                                        @else
-                                           <option value="{{$client->id}}">{{$client->person->first_name." ".$client->person->surname}}</option>
-                                        @endif
-                                       @endforeach
-
-                                       </select>
-
-                                       <p><a class="btn btn-secondary"  href="/clients/create" role="button">
-                                               Nuevo Cliente... &raquo;</a></p>
+                                       <h4>La orden de ingreso se encarga de añadir nuevos autos al establecimiento del autolote,
+                                         en la seleccion de cliente debe seleccionar la empresa que nos vende el vehiculo, puede añadir
+                                         la cantidad de vehiculos que considere correcta para la orden.</h4>
 
                                </div>
                                <div class="col-md-6">
-                                   <h2>Titulo 2</h2>
-                                           <p><a class="btn btn-secondary btn-lg" href="/order_clean" role="button">
-                                                       Limpiar Orden &raquo;</a></p>
+                                   <h2>Generar Orden</h2>
 
-                                           <p><a class="btn btn-secondary btn-lg" href="/order_type_in_store" role="button">
-                                                       Generar Orden &raquo;</a></p>
 
+
+                                   <form action="/order_type_in_store" method="POST">
+                                       {{ csrf_field() }}
+                                          <h3>Seleccione el cliente que al cual le compraremos los vehiculos</h3>
+                                           <select type="text" class="form-control" name="client_id" value="{{ old('client_id') }}"  autocomplete="client_id">
+
+                                            @foreach ($clients as $client)
+                                             @if ($client->is_legal)
+                                               <option value="{{$client->id}}">{{$client->legal->legal_name}}</option>
+                                             @else
+                                                <option value="{{$client->id}}">{{$client->person->first_name." ".$client->person->surname}}</option>
+                                             @endif
+                                            @endforeach
+
+                                            </select>
+
+                                            <p><a class="btn btn-secondary"  href="/clients/create" role="button">
+                                                    Nuevo Cliente... &raquo;</a></p>
+
+
+
+
+
+
+                                             <div style="overflow:auto;">
+                                               <div style="float:right;">
+                                                 <p><a class="btn btn-secondary" href="/order_clean" role="button">
+                                                             Limpiar Orden &raquo;</a></p>
+                                               <button type="submit" class="btn btn-secondary">Generar Orden &raquo;</button>
+                                             </div>
+                                           </div>
+
+                                    </form>
                                </div>
                            </div>
                            <hr>
