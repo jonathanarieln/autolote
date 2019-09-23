@@ -18,6 +18,9 @@ class CreateOrdersTable extends Migration
             $table->double('value');
             $table->string('comments',200);
             $table->integer('days')->default('0');
+            //solo para las ordenes de retorno en las demas sera null
+            $table->bigInteger('order_id')->unsigned()->nullable();
+            $table->foreign('order_id')->references('id')->on('orders');
             $table->bigInteger('order_type_id')->unsigned();
             $table->foreign('order_type_id')->references('id')->on('order_types');
             $table->bigInteger('client_id')->unsigned();

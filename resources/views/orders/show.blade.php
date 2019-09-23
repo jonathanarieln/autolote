@@ -53,7 +53,9 @@
                             <th>Color</th>
                             <th>Marca</th>
                             <th>Modelo</th>
+                            <th>Precio Base</th>
                             <th>Precio</th>
+                            <th>Dias</th>
                         </tr>
                         </thead>
                         @foreach ($order->cars as $car)
@@ -64,7 +66,9 @@
                                   <th>{{$car->color->color_name}}</th>
                                   <th>{{$car->brand->brand_name}}</th>
                                   <th>{{$car->modelo->model_name}}</th>
+                                  <th>{{$car->car_type->base_price}}</th>
                                   <th>{{$car->price}}</th>
+                                  <th>{{$order->days}}</th>
                               </tr>
                         @endforeach
 

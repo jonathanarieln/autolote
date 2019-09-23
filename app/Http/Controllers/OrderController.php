@@ -115,7 +115,11 @@ class OrderController extends Controller
         //Guardamos todos los datos de las ORDENES aca comienza el guardado
         //obtenemos los datos en base de datos encargados del ingreso de autos
         $cars = ToHireTempCar::where("user_id","=",Auth::user()->id)->get();
-        $price = 9999.99;
+        //inicializamos el precio en cero
+        $price = 0.00;
+        foreach ($cars as $car) {
+          $price += $car->car->car_type->base_price;
+        }
 
         $orderNew = Order::create([
              'client_id'=> $Datos["client_id"],
@@ -123,11 +127,12 @@ class OrderController extends Controller
              'user_id'=> Auth::user()->id,
              'days'=> $Datos["days"],
              'comments'=> "Orden de arrendamiento exitosa",
-             'value'=> $price,
+             'value'=> $price*$Datos["days"],
            ]);
 
         //Por cada uno de los vehiculos en base guardamos en la tablla cars
         foreach ($cars as $car) {
+          $price += $car->car->car_type->base_price;
           $location = Location::find($car->car->location_id);
           $location->available = true;
           $location->update();
@@ -156,6 +161,80 @@ class OrderController extends Controller
 
         //termina el guardado de la orden
       }
+    }
+
+    //ORDEN DE RETORNO DE ARRENDAMIENTO
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function return_to_hire_order()
+    {
+          $orders = Order::where("order_type_id","=","3")->where("order_id","=",null)->get();
+          return view('orders.return_to_hire_order',compact(['orders']));
+    }
+
+    //ORDEN que guarda el retorno de mantenimiento
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function return_to_hire_order_store()
+    {
+          $Datos = request()->validate([
+            'order_id' => 'required',
+          ],[
+            'order_id.required' => 'Campo Orden es obligatorio!',
+          ]);
+
+          $orderOld = Order::find($Datos["order_id"]);
+
+          $orderNew = Order::create([
+            'client_id'=> $orderOld->client_id,
+            'order_type_id'=> 4,
+            'user_id'=> Auth::user()->id,
+            'days'=> $orderOld->days,
+            'comments'=> "Orden de arrendamiento regresada exitosa",
+            'value'=> 0,
+            ]);
+
+
+
+            $orderOld->order_id = $orderNew->id;
+
+            $orderOld->update();
+
+
+
+
+          foreach ($orderOld->cars as $car) {
+
+            DB::table('car_order')->insert([
+                'car_id' => $car->id,
+                'order_id' => $orderNew->id,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            ]);
+
+            $movementNew = Movement::create([
+                 'movement_name'=> "Devolucion Arrendamiento",
+                 'available'=> true,
+                 'car_id'=> $car->id,
+               ]);
+            $car->available = true;
+            $freeLocation = Location::where("available","=",true)->first();
+            $car->location_id = $freeLocation->id;
+            $car->update();
+            $freeLocation->available = false;
+            $freeLocation->update();
+
+          }
+
+
+
+          return redirect()->route('orders.index');
     }
 
 
@@ -269,7 +348,9 @@ class OrderController extends Controller
     {
 
       if(TempCar::count()==0){
+
             return Redirect::back()->withErrors(['No ha ingresado ningun vehiculo']);
+
       }else{
 
         //Hacemos el validate al campo cliente por si alguien quiere pasar algo raro por html
@@ -331,6 +412,40 @@ class OrderController extends Controller
 
 
     }
+
+    //ORDEN DE VENTA
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function sale_order()
+    {
+          return "Orden de venta";
+    }
+
+
+    //ORDEN DE Mantenimiento
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function maintenance_order()
+    {
+          return "Orden de mantenimiento";
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function return_maintenance_order()
+    {
+          return 'Retorno de orden de mantenimiento';
+    }
+
 
     /**
      * Show the form for creating a new resource.

@@ -26,36 +26,47 @@
                                                Arrendar Vehículos... &raquo;</a></p>
 
                                </div>
+
+                               <div class="col-md-4">
+                                   <h2>Orden de Retorno de Arrendamiento</h2>
+                                       <p>Orden especializada para retornar vehiculos. </p>
+
+                                       <p><a class="btn btn-secondary"  href="/return_to_hire_order" role="button">
+                                               Retornar Vehiculos Arrendamiento... &raquo;</a></p>
+
+                               </div>
+
                                <div class="col-md-4">
                                    <h2>Orden de Mantenimiento</h2>
                                        <p>Orden especializada para mandar un vehiculo a mantenimiento. </p>
 
-                                       <p><a class="btn btn-secondary"  href="/order_in" role="button">
+                                       <p><a class="btn btn-secondary"  href="/maintenance_order" role="button">
                                                Orden Mantenimiento... &raquo;</a></p>
 
                                </div>
-                               <div class="col-md-4">
-                                   <h2>Orden de Retorno</h2>
-                                       <p>Orden especializada para retornar vehiculos. </p>
-
-                                       <p><a class="btn btn-secondary"  href="/order_in" role="button">
-                                               Retornar Vehiculos... &raquo;</a></p>
 
                                </div>
-                               </div>
 
-                               <hr class="">
+                               <hr>
 
                                <div class="row">
-                               <div class="col-md-6">
-                                   <h2>Orden de Venta</h2>
-                                       <p>Orden especializada para ingresar vehiculos nuevos al autolote. </p>
+                               <div class="col-md-4">
+                                     <h2>Orden de Retorno de Mantenimiento</h2>
+                                         <p>Orden especializada para ingresar vehiculos nuevos al autolote. </p>
 
-                                       <p><a class="btn btn-secondary"  href="/order_in" role="button">
-                                               Orden Ingreso... &raquo;</a></p>
+                                         <p><a class="btn btn-secondary"  href="/return_maintenance_order" role="button">
+                                                 Retornar Vehiculos Mantenimiento... &raquo;</a></p>
 
                                </div>
-                               <div class="col-md-6">
+                               <div class="col-md-4">
+                                   <h2>Orden de Venta</h2>
+                                       <p>Orden especializada para vender vehiculos pertenecientes al autolote. </p>
+
+                                       <p><a class="btn btn-secondary"  href="/sale_order" role="button">
+                                               Orden de Venta... &raquo;</a></p>
+
+                               </div>
+                               <div class="col-md-4">
                                    <h2>Orden de Ingreso</h2>
                                        <p>Orden especializada para ingresar vehiculos nuevos al autolote. </p>
 

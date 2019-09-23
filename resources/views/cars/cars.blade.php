@@ -17,6 +17,7 @@
                             <th>Marca</th>
                             <th>Modelo</th>
                             <th>Color</th>
+                            <th>Tipo</th>
                             <th>Disponibilidad</th>
                             <th>Detalles</th>
                         </tr>
@@ -29,6 +30,7 @@
                                 <td>{{$car->brand->brand_name}}</td>
                                 <td>{{$car->modelo->model_name}}</td>
                                 <th>{{$car->color->color_name}}</th>
+                                <th>{{$car->car_type->car_type_name}}</th>
                                 <th>
                                 @if ($car->available)
                                     Disponible

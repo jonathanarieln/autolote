@@ -65,7 +65,7 @@
                      </table>
                   @endif
 
-                  <a class="btn btn-secondary" href="/orders">Ver Ordenes</a>
+                  <a class="btn btn-secondary" href="/cars">Ver Vehículos</a>
 
                 </div>
             </div>

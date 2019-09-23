@@ -11,6 +11,95 @@
 
                   <main role="main">
 
+                    <!-- Main jumbotron for a primary marketing message or call to action -->
+                    <div class="jumbotron bg-dark">
+                        <div class="container">
+                            <h1 class="display-4">Vehículos</h1>
+                            <table class="table table-hover table-dark">
+                              <thead>
+                                <tr>
+                                  <th>
+                                    Placa
+                                  </th>
+                                  <th>
+                                    Año
+                                  </th>
+                                  <th>
+                                    Marca
+                                  </th>
+                                  <th>
+                                    Modelo
+                                  </th>
+                                  <th>
+                                    Tipo Vehículo
+                                  </th>
+                                  <th>
+                                    Ubicación
+                                  </th>
+                                  <th>
+                                    Eliminar
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                @foreach ($to_hire_temp_cars as $car)
+                                    <tr>
+                                      <tr>
+                                        <th>
+                                          {{$car->car->plate}}
+                                        </th>
+                                        <th>
+                                          {{$car->car->year}}
+                                        </th>
+                                        <th>
+                                          {{$car->car->brand->brand_name}}
+                                        </th>
+                                        <th>
+                                          {{$car->car->modelo->model_name}}
+                                        </th>
+                                        <th>
+                                          {{$car->car->car_type->car_type_name}}
+                                        </th>
+                                        <th>
+                                          {{$car->car->location->location_name}}
+                                        </th>
+                                        <th>
+                                          <a href="#">Eliminar</a>
+                                        </th>
+                                      </tr>
+                                    </tr>
+                                @endforeach
+                              </tbody>
+                              <tfoot>
+                                <tr>
+                                  <th colspan="8">
+
+                                    <p><a class="btn btn-block btn-secondary"  href="/to_hire_order_new" role="button">
+                                            Añadir nuevo vehículo &raquo;</a></p>
+
+                                  </th>
+                                </tr>
+                              </tfoot>
+                            </table>
+
+                            <div class="container">
+                                <!-- Example row of columns -->
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        {{-- <h2>Valor Total: L. {{$price}}</h2> --}}
+
+                                    </div>
+                                </div>
+                                <hr>
+
+                            </div> <!-- /container -->
+
+
+
+                        </div>
+                    </div>
+
                     @if($errors->any())
                         <div class="alert alert-danger">
                         <p >Atencion!</p>
@@ -85,94 +174,7 @@
 
                        </div> <!-- /container -->
 
-                       <!-- Main jumbotron for a primary marketing message or call to action -->
-                       <div class="jumbotron bg-dark">
-                           <div class="container">
-                               <h1 class="display-4">Vehículos</h1>
-                               <table class="table table-hover table-dark">
-                                 <thead>
-                                   <tr>
-                                     <th>
-                                       Placa
-                                     </th>
-                                     <th>
-                                       Año
-                                     </th>
-                                     <th>
-                                       Marca
-                                     </th>
-                                     <th>
-                                       Modelo
-                                     </th>
-                                     <th>
-                                       Tipo Vehículo
-                                     </th>
-                                     <th>
-                                       Ubicación
-                                     </th>
-                                     <th>
-                                       Eliminar
-                                     </th>
-                                   </tr>
-                                 </thead>
-                                 <tbody>
-                                   @foreach ($to_hire_temp_cars as $car)
-                                       <tr>
-                                         <tr>
-                                           <th>
-                                             {{$car->car->plate}}
-                                           </th>
-                                           <th>
-                                             {{$car->car->year}}
-                                           </th>
-                                           <th>
-                                             {{$car->car->brand->brand_name}}
-                                           </th>
-                                           <th>
-                                             {{$car->car->modelo->model_name}}
-                                           </th>
-                                           <th>
-                                             {{$car->car->car_type->car_type_name}}
-                                           </th>
-                                           <th>
-                                             {{$car->car->location->location_name}}
-                                           </th>
-                                           <th>
-                                             <a href="#">Eliminar</a>
-                                           </th>
-                                         </tr>
-                                       </tr>
-                                   @endforeach
-                                 </tbody>
-                                 <tfoot>
-                                   <tr>
-                                     <th colspan="8">
 
-                                       <p><a class="btn btn-block btn-secondary"  href="/to_hire_order_new" role="button">
-                                               Añadir nuevo vehículo &raquo;</a></p>
-
-                                     </th>
-                                   </tr>
-                                 </tfoot>
-                               </table>
-
-                               <div class="container">
-                                   <!-- Example row of columns -->
-                                   <div class="row">
-
-                                       <div class="col-md-12">
-                                           {{-- <h2>Valor Total: L. {{$price}}</h2> --}}
-
-                                       </div>
-                                   </div>
-                                   <hr>
-
-                               </div> <!-- /container -->
-
-
-
-                           </div>
-                       </div>
 
                    </main>
                 </div>

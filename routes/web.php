@@ -53,6 +53,21 @@ Route::middleware(['auth'])->group(function () {
     //                    'orders'=>'OrderController']);
 
 
+   //RUTA PARA ACCEDER A LA ORDEN DE MANTENIMIENTO
+   Route::get('/maintenance_order', 'OrderController@maintenance_order');
+
+   //RUTA PARA ACCEDER A LA ORDEN DE VENTA
+   Route::get('/sale_order', 'OrderController@sale_order');
+
+   //RUTA PARA ACCEDER A LA ORDEN DE DEVOLUCION DE ARRENDAMIENTO
+   Route::get('/return_to_hire_order', 'OrderController@return_to_hire_order');
+
+   //RUTA PARA ACCEDER A LA ORDEN DE DEVOLUCION DE ARRENDAMIENTO
+   Route::post('/return_to_hire_order_type_store', 'OrderController@return_to_hire_order_store');
+
+   //RUTA PARA ACCEDER A LA ORDEN DE DEVOLUCION DE MANTENIMIENTO
+   Route::get('/return_maintenance_order', 'OrderController@return_maintenance_order');
+
     //ruta para acceder a una orden de arrendamiento
     Route::get('/to_hire_order', 'OrderController@to_hire_order');
 
