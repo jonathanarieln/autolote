@@ -421,7 +421,33 @@ class OrderController extends Controller
      */
     public function sale_order()
     {
-          return "Orden de venta";
+          $cars = Car::where("available","=",true)->get();
+          $clients = Client::all();
+          return view('orders.sale_order', compact(['cars','clients']));
+    }
+
+    //ORDEN DE VENTA
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function sale_order_type_store()
+    {
+
+
+      $Dato = request()->validate([
+          'client_id' => 'required',
+          'car_id' => 'required',
+          'value' => 'required',
+      ],[
+           'client_id.required' => 'Campo Cliente es obligatorio!',
+           'car_id.required' => 'Campo Vehículo es obligatorio!',
+           'value.required' => 'Campo Precio es obligatorio!',
+      ]);
+
+
+          return "Guardando";
     }
 
 

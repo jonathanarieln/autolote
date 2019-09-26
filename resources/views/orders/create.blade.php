@@ -18,7 +18,7 @@
                        <div class="container">
                            <!-- Example row of columns -->
                            <div class="row">
-                               <div class="col-md-4">
+                               <div class="col-md-6">
                                    <h2>Orden de Arrendamiento</h2>
                                        <p>Orden especializada para el arrendamiento de vehículos. </p>
 
@@ -27,7 +27,7 @@
 
                                </div>
 
-                               <div class="col-md-4">
+                               <div class="col-md-6">
                                    <h2>Orden de Retorno de Arrendamiento</h2>
                                        <p>Orden especializada para retornar vehiculos. </p>
 
@@ -36,29 +36,29 @@
 
                                </div>
 
-                               <div class="col-md-4">
+                               {{-- <div class="col-md-4">
                                    <h2>Orden de Mantenimiento</h2>
                                        <p>Orden especializada para mandar un vehiculo a mantenimiento. </p>
 
                                        <p><a class="btn btn-secondary"  href="/maintenance_order" role="button">
                                                Orden Mantenimiento... &raquo;</a></p>
 
-                               </div>
+                               </div> --}}
 
                                </div>
 
                                <hr>
 
                                <div class="row">
-                               <div class="col-md-4">
+                               {{-- <div class="col-md-4">
                                      <h2>Orden de Retorno de Mantenimiento</h2>
                                          <p>Orden especializada para ingresar vehiculos nuevos al autolote. </p>
 
                                          <p><a class="btn btn-secondary"  href="/return_maintenance_order" role="button">
                                                  Retornar Vehiculos Mantenimiento... &raquo;</a></p>
 
-                               </div>
-                               <div class="col-md-4">
+                               </div> --}}
+                               <div class="col-md-6">
                                    <h2>Orden de Venta</h2>
                                        <p>Orden especializada para vender vehiculos pertenecientes al autolote. </p>
 
@@ -66,7 +66,7 @@
                                                Orden de Venta... &raquo;</a></p>
 
                                </div>
-                               <div class="col-md-4">
+                               <div class="col-md-6">
                                    <h2>Orden de Ingreso</h2>
                                        <p>Orden especializada para ingresar vehiculos nuevos al autolote. </p>
 

@@ -59,6 +59,9 @@ Route::middleware(['auth'])->group(function () {
    //RUTA PARA ACCEDER A LA ORDEN DE VENTA
    Route::get('/sale_order', 'OrderController@sale_order');
 
+   //RUTA PARA ACCEDER A LA ORDEN DE VENTA
+   Route::post('/sale_order_type_store', 'OrderController@sale_order_type_store');
+
    //RUTA PARA ACCEDER A LA ORDEN DE DEVOLUCION DE ARRENDAMIENTO
    Route::get('/return_to_hire_order', 'OrderController@return_to_hire_order');
 

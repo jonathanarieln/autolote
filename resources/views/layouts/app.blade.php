@@ -63,10 +63,28 @@
                               <a class="nav-link" href="/cars">{{ __('Vehículos') }}</a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link" href="/errors/404">{{ __('Reportes') }}</a>
-                          </li>
-                          <li class="nav-item">
                               <a class="nav-link" href="/clients">{{ __('Clientes') }}</a>
+                          </li>
+                          <li class="nav-item dropdown">
+                              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                  {{ __('Reportes') }} <span class="caret"></span>
+                              </a>
+
+                              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                  <a class="dropdown-item" href="{{ route('home') }}"
+                                     onclick="event.preventDefault();
+                                                   document.getElementById('logout-form').submit();">
+                                      {{ __('Reporte de Vehículos') }}
+                                  </a>
+
+                                  <a class="dropdown-item" href="{{ route('home') }}"
+                                     onclick="event.preventDefault();
+                                                   document.getElementById('logout-form').submit();">
+                                      {{ __('Reporte de Ventas') }}
+                                  </a>
+
+                              </div>
+
                           </li>
                             @can ('admin')
                               <li class="nav-item">
