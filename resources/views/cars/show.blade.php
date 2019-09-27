@@ -55,7 +55,7 @@
                                   @if ($movement->available)
                                       Disponible
                                     @else
-                                      No Disponoble
+                                      No Disponible
                                   @endif
                                   </th>
                                   <th>{{$movement->created_at}}</th>

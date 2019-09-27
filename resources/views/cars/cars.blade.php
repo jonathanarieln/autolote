@@ -35,7 +35,7 @@
                                 @if ($car->available)
                                     Disponible
                                   @else
-                                    No Disponoble
+                                    No Disponible
                                 @endif
                                 </th>
                                 <td><a href="/cars/{{$car->id}}">Ver Detalles</a></td>
