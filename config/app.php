@@ -178,6 +178,9 @@ return [
         //Spatie Service Provider
         Spatie\Permission\PermissionServiceProvider::class,
 
+        //Passport
+        Laravel\Passport\PassportServiceProvider::class,
+
     ],
 
     /*
