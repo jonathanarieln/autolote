@@ -29,7 +29,7 @@ class CreateCarsTable extends Migration
             $table->foreign('modelo_id')->references('id')->on('modelos');
             $table->bigInteger('car_type_id')->unsigned();
             $table->foreign('car_type_id')->references('id')->on('car_types');
-            $table->bigInteger('location_id')->unsigned();
+            $table->bigInteger('location_id')->unsigned()->nullable();
             $table->foreign('location_id')->references('id')->on('locations');
             $table->timestamps();
         });

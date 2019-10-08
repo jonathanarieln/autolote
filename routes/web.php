@@ -34,6 +34,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])->group(function () {
 
+  //RUTA PARA ACCEDER Al REPORTE DE VENTAS
+  Route::get('/sales', 'SaleController@index')->name('sales');
+
     //RUTAS CLIENTES
     Route::resource('clients', 'ClientController')->names([
       'clients'=>'clients.index',
@@ -41,6 +44,9 @@ Route::middleware(['auth'])->group(function () {
 
     //RUTAS autos
     Route::resource('cars', 'CarController');
+
+    //RUTAS comissions
+    Route::resource('commissions', 'CommissionController');
 
     //RUTAS ORDENES
     Route::resource('orders', 'OrderController')->names([

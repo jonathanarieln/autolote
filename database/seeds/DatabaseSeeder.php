@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
            OrderTypesTableSeeder::class,
            OrdersTableSeeder::class,
            CarOrderTableSeeder::class,
+           CommissionsTableSeeder::class,
          ]);
     }
 }

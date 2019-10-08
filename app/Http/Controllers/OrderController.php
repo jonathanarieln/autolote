@@ -138,6 +138,7 @@ class OrderController extends Controller
           $location->update();
           $carLoc = Car::find($car->car->id);
           $carLoc->available = false;
+          $carLoc->location_id = null;
           $carLoc->update();
              $movementNew = Movement::create([
                   'movement_name'=> "Arrendamiento",

@@ -9,7 +9,7 @@
 
                 <div class="card-body">
 
-                    <table class = "table table-hover table-dark table-responsive">
+                    <table id="idTableCars" class = "table table-hover table-dark table-responsive">
                         <thead>
                         <tr>
                             <th>Id</th>
@@ -43,6 +43,8 @@
                         @endforeach
                         </tbody>
                     </table>
+
+                     <button class="btn btn-secondary" onclick="generateCarsPdf()">Generar PDF</button>
 
 
 

@@ -29,7 +29,11 @@
                               <td>{{$car->chassis}}</td>
                               <td>{{$car->year}}</td>
                               <td>{{$car->color->color_name}}</td>
+                              @if ($car->location!=null)
                               <td>{{$car->location->location_name}}</td>
+                              @else
+                              <td>N/T</td>
+                              @endif
                           </tr>
 
                       </tbody>

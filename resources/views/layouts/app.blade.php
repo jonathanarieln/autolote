@@ -11,6 +11,9 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/myjs.js') }}" defer></script>
+    <script src="{{ asset('js/jspdf.min.js') }}" defer></script>
+    <script src="{{ asset('js/jspdf.plugin.autotable.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -71,15 +74,13 @@
                               </a>
 
                               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                  <a class="dropdown-item" href="{{ route('home') }}"
+                                  {{-- <a class="dropdown-item" href="{{ route('home') }}"
                                      onclick="event.preventDefault();
                                                    document.getElementById('logout-form').submit();">
                                       {{ __('Reporte de Vehículos') }}
-                                  </a>
+                                  </a> --}}
 
-                                  <a class="dropdown-item" href="{{ route('home') }}"
-                                     onclick="event.preventDefault();
-                                                   document.getElementById('logout-form').submit();">
+                                  <a class="dropdown-item" href="{{ route('sales') }}">
                                       {{ __('Reporte de Ventas') }}
                                   </a>
 
