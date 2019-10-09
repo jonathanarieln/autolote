@@ -32,6 +32,16 @@ class OrderController extends Controller
       return view('orders.orders', compact('orders'));
     }
 
+
+    public function api()
+    {
+      $orders = Order::all();
+      return response()->json([
+          'success' => true,
+          'data' => $orders
+      ]);
+    }
+
     /**
      * Display a listing of the resource.
      *

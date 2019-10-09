@@ -18,6 +18,15 @@ class CarController extends Controller
       return view('cars.cars', compact('cars'));
     }
 
+    public function api()
+    {
+      $cars = Car::all();
+      return response()->json([
+          'success' => true,
+          'data' => $cars
+      ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
